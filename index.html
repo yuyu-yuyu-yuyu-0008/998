@@ -15,7 +15,7 @@
       resultEl.innerText = "讀取中...";
 
       try {
-        const res = await fetch("https://huggingface.co/spaces/rgtttts/66666");
+        const res = await fetch("https://rgtttts-66666.hf.space/");
         if (!res.ok) throw new Error("HTTP error " + res.status);
 
         const data = await res.json();
@@ -29,6 +29,7 @@
   </script>
 </body>
 </html>
+
 
 
 
