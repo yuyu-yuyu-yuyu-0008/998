@@ -2,11 +2,11 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>Hugging Face Space 訊息抓取</title>
+  <title>Yahoo 抓取前端</title>
 </head>
 <body>
-  <h1>抓取 Hugging Face Space 根目錄訊息</h1>
-  <button id="fetchBtn">抓取訊息</button>
+  <h1>Yahoo 抓取測試</h1>
+  <button id="fetchBtn">抓取 Yahoo</button>
   <pre id="result"></pre>
 
   <script>
@@ -15,12 +15,15 @@
       resultEl.innerText = "讀取中...";
 
       try {
-        // 抓取 Hugging Face Space 根目錄訊息
-        const res = await fetch("https://rgtttts-66666.hf.space/");
+        // 抓取 Hugging Face Space /fetch
+        const res = await fetch("https://rgtttts-66666.hf.space/fetch");
         if (!res.ok) throw new Error("HTTP error " + res.status);
 
         const data = await res.json();
-        resultEl.innerText = JSON.stringify(data, null, 2);
+        if (!data.html) throw new Error("回傳資料格式錯誤");
+
+        // 顯示前 2000 個字
+        resultEl.innerText = data.html.substring(0, 2000) + (data.html.length > 2000 ? "..." : "");
       } catch (err) {
         resultEl.innerText = "發生錯誤: " + err.message;
       }
@@ -28,6 +31,7 @@
   </script>
 </body>
 </html>
+
 
 
 
